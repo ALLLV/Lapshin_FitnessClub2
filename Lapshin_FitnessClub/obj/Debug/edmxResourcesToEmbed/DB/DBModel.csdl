@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DBModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DBModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="ClientService" EntityType="DBModel.ClientService" />
+    <EntitySet Name="ClientSubscription" EntityType="DBModel.ClientSubscription" />
+    <EntitySet Name="EditHistory" EntityType="DBModel.EditHistory" />
+    <EntitySet Name="Gender" EntityType="DBModel.Gender" />
+    <EntitySet Name="Role" EntityType="DBModel.Role" />
+    <EntitySet Name="Service" EntityType="DBModel.Service" />
+    <EntitySet Name="Subscription" EntityType="DBModel.Subscription" />
+    <EntitySet Name="sysdiagrams" EntityType="DBModel.sysdiagrams" />
+    <EntitySet Name="User" EntityType="DBModel.User" />
+    <AssociationSet Name="FK_ClientService_Service" Association="DBModel.FK_ClientService_Service">
+      <End Role="Service" EntitySet="Service" />
+      <End Role="ClientService" EntitySet="ClientService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientService_User" Association="DBModel.FK_ClientService_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="ClientService" EntitySet="ClientService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientSubscription_Service" Association="DBModel.FK_ClientSubscription_Service">
+      <End Role="Service" EntitySet="Service" />
+      <End Role="ClientSubscription" EntitySet="ClientSubscription" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientSubscription_User" Association="DBModel.FK_ClientSubscription_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="ClientSubscription" EntitySet="ClientSubscription" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EditHistory_User" Association="DBModel.FK_EditHistory_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="EditHistory" EntitySet="EditHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Gender" Association="DBModel.FK_User_Gender">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="DBModel.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subscription_Service" Association="DBModel.FK_Subscription_Service">
+      <End Role="Service" EntitySet="Service" />
+      <End Role="Subscription" EntitySet="Subscription" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="ClientService">
+    <Key>
+      <PropertyRef Name="IdClient" />
+      <PropertyRef Name="IdService" />
+    </Key>
+    <Property Name="IdClient" Type="Int32" Nullable="false" />
+    <Property Name="IdService" Type="Int32" Nullable="false" />
+    <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsProvided" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Service" Relationship="DBModel.FK_ClientService_Service" FromRole="ClientService" ToRole="Service" />
+    <NavigationProperty Name="User" Relationship="DBModel.FK_ClientService_User" FromRole="ClientService" ToRole="User" />
+  </EntityType>
+  <EntityType Name="ClientSubscription">
+    <Key>
+      <PropertyRef Name="IdClient" />
+      <PropertyRef Name="IdService" />
+    </Key>
+    <Property Name="IdClient" Type="Int32" Nullable="false" />
+    <Property Name="IdService" Type="Int32" Nullable="false" />
+    <Property Name="PurchaseTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Service" Relationship="DBModel.FK_ClientSubscription_Service" FromRole="ClientSubscription" ToRole="Service" />
+    <NavigationProperty Name="User" Relationship="DBModel.FK_ClientSubscription_User" FromRole="ClientSubscription" ToRole="User" />
+  </EntityType>
+  <EntityType Name="EditHistory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdEditor" Type="Int32" Nullable="false" />
+    <Property Name="TimeEdit" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EditSourceTableName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IdEditSource" Type="Int32" />
+    <Property Name="NameEditSource" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="EditSourceStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="DBModel.FK_EditHistory_User" FromRole="EditHistory" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="Code" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="DBModel.FK_User_Gender" FromRole="Gender" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="DBModel.FK_User_Role" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Duration" Type="Int32" Nullable="false" />
+    <Property Name="Cost" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="ClientService" Relationship="DBModel.FK_ClientService_Service" FromRole="Service" ToRole="ClientService" />
+    <NavigationProperty Name="ClientSubscription" Relationship="DBModel.FK_ClientSubscription_Service" FromRole="Service" ToRole="ClientSubscription" />
+    <NavigationProperty Name="Subscription" Relationship="DBModel.FK_Subscription_Service" FromRole="Service" ToRole="Subscription" />
+  </EntityType>
+  <EntityType Name="Subscription">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IdService" Type="Int32" Nullable="false" />
+    <Property Name="Cost" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Duration" Type="Int32" Nullable="false" />
+    <Property Name="NumberOfLessons" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Service" Relationship="DBModel.FK_Subscription_Service" FromRole="Subscription" ToRole="Service" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdRole" Type="Int32" Nullable="false" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Patronymic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="GenderCode" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="ClientService" Relationship="DBModel.FK_ClientService_User" FromRole="User" ToRole="ClientService" />
+    <NavigationProperty Name="ClientSubscription" Relationship="DBModel.FK_ClientSubscription_User" FromRole="User" ToRole="ClientSubscription" />
+    <NavigationProperty Name="EditHistory" Relationship="DBModel.FK_EditHistory_User" FromRole="User" ToRole="EditHistory" />
+    <NavigationProperty Name="Gender" Relationship="DBModel.FK_User_Gender" FromRole="User" ToRole="Gender" />
+    <NavigationProperty Name="Role" Relationship="DBModel.FK_User_Role" FromRole="User" ToRole="Role" />
+  </EntityType>
+  <Association Name="FK_ClientService_Service">
+    <End Type="DBModel.Service" Role="Service" Multiplicity="1" />
+    <End Type="DBModel.ClientService" Role="ClientService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClientService">
+        <PropertyRef Name="IdService" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientService_User">
+    <End Type="DBModel.User" Role="User" Multiplicity="1" />
+    <End Type="DBModel.ClientService" Role="ClientService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClientService">
+        <PropertyRef Name="IdClient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientSubscription_Service">
+    <End Type="DBModel.Service" Role="Service" Multiplicity="1" />
+    <End Type="DBModel.ClientSubscription" Role="ClientSubscription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClientSubscription">
+        <PropertyRef Name="IdService" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientSubscription_User">
+    <End Type="DBModel.User" Role="User" Multiplicity="1" />
+    <End Type="DBModel.ClientSubscription" Role="ClientSubscription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClientSubscription">
+        <PropertyRef Name="IdClient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EditHistory_User">
+    <End Type="DBModel.User" Role="User" Multiplicity="1" />
+    <End Type="DBModel.EditHistory" Role="EditHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EditHistory">
+        <PropertyRef Name="IdEditor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Gender">
+    <End Type="DBModel.Gender" Role="Gender" Multiplicity="0..1" />
+    <End Type="DBModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="Code" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="GenderCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Type="DBModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="DBModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="IdRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subscription_Service">
+    <End Type="DBModel.Service" Role="Service" Multiplicity="1" />
+    <End Type="DBModel.Subscription" Role="Subscription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Subscription">
+        <PropertyRef Name="IdService" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
