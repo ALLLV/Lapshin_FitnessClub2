@@ -10,11 +10,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Button = System.Windows.Controls.Button;
 
 namespace Lapshin_FitnessClub.Pages
 {
@@ -26,6 +28,9 @@ namespace Lapshin_FitnessClub.Pages
         public ServiceList()
         {
             InitializeComponent();
+
+            TbSearch.TextChanged += TbSearch_TextChanged;
+
             GetServiceList();
         }
 
@@ -36,6 +41,28 @@ namespace Lapshin_FitnessClub.Pages
             List<Service> serviceList = new List<Service>();
 
             serviceList = ConnectionClass.context.Service.ToList();
+
+            //Поиск
+            switch (CbxSearchMode.SelectedIndex)
+            {
+                case 0:
+                    serviceList = serviceList.Where(i => i.Name.ToLower().Contains(TbSearch.Text.ToLower())).ToList();
+                    break;
+                case 1:
+                    if (String.IsNullOrWhiteSpace(TbSearch.Text)) break;
+                    else
+                    {
+                        try
+                        {
+                            serviceList = serviceList.Where(i => i.Cost == Int32.Parse(TbSearch.Text)).ToList();
+                        }
+                        catch
+                        {
+                            
+                        }
+                    }
+                    break;
+            }
 
             LvService.ItemsSource = serviceList;
         }
@@ -67,6 +94,11 @@ namespace Lapshin_FitnessClub.Pages
             AddEditServiceWindow addEditServiceWindow = new AddEditServiceWindow(service);
             addEditServiceWindow.ShowDialog();
 
+            GetServiceList();
+        }
+
+        private void TbSearch_TextChanged(object sender, RoutedEventArgs e)
+        {
             GetServiceList();
         }
     }
