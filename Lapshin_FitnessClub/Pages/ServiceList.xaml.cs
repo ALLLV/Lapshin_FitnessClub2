@@ -4,6 +4,7 @@ using Lapshin_FitnessClub.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Authentication.ExtendedProtection.Configuration;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,11 +26,37 @@ namespace Lapshin_FitnessClub.Pages
     /// </summary>
     public partial class ServiceList : Page
     {
+        //Список значений
+        List<String> listSortValues = new List<String> 
+        { 
+            "По умолчанию",
+            "По названию (по возрастанию)",
+            "По название (по убыванию)",
+            "По цене (по возрастанию)",
+            "По цене (по убыванию)"
+        };
+
+        //Финальный список, который служит источником данных для сортировочного списка выбора CmbSort
+        List<TextBlock> listSortFinale = new List<TextBlock>();
         public ServiceList()
         {
             InitializeComponent();
 
+            //Добавление событий для некоторых элементов
             TbSearch.TextChanged += TbSearch_TextChanged;
+            CmbSort.SelectionChanged += CmbSort_SelectionChanged;
+
+            //Создание источника данных для сортировочного списка выбора CmbSort (По сути это все ради изменения размера текста в ComboBoxItem)
+            foreach (string item in listSortValues)
+            {
+                TextBlock tb = new TextBlock();
+                tb.Text = item;
+                tb.FontSize = 18;
+                listSortFinale.Add(tb);
+            }
+
+            CmbSort.ItemsSource = listSortFinale;
+            CmbSort.SelectedIndex = 0;
 
             GetServiceList();
         }
@@ -61,6 +88,26 @@ namespace Lapshin_FitnessClub.Pages
                             
                         }
                     }
+                    break;
+            }
+
+            //сортировка
+            switch (CmbSort.SelectedIndex)
+            {
+                case 0:
+                    serviceList = serviceList.OrderBy(i => i.Id).ToList();
+                    break;
+                case 1:
+                    serviceList = serviceList.OrderBy(i => i.Name.ToLower()).ToList();
+                    break;
+                case 2:
+                    serviceList = serviceList.OrderByDescending(i => i.Name.ToLower()).ToList();
+                    break;
+                case 3:
+                    serviceList = serviceList.OrderBy(i => i.Cost).ToList();
+                    break;
+                case 4:
+                    serviceList = serviceList.OrderByDescending(i => i.Cost).ToList();
                     break;
             }
 
@@ -99,6 +146,13 @@ namespace Lapshin_FitnessClub.Pages
 
         private void TbSearch_TextChanged(object sender, RoutedEventArgs e)
         {
+            //Событие на изменение текста поиска
+            GetServiceList();
+        }
+
+        private void CmbSort_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            //Событие на изменение выбора метода сортировки
             GetServiceList();
         }
     }
