@@ -155,5 +155,10 @@ namespace Lapshin_FitnessClub.Pages
             //Событие на изменение выбора метода сортировки
             GetServiceList();
         }
+
+        private void BtnGoBack_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

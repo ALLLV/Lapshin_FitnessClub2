@@ -34,8 +34,11 @@
         <WrapPanel Orientation="Horizontal" 
                    Grid.Row="1">
             <Button Content="Список услуг"
-                    Height="350" Width="400"
+                    Height="200" Width="300"
                     x:Name="BtnServiceListShow" Click="BtnServiceListShow_Click"/>
+            <Button Content="Список пользователей"
+                    Height="200" Width="300"
+                    x:Name="BtnUserListShow" Click="BtnUserListShow_Click"/>
         </WrapPanel>
     </Grid>
 </Page>

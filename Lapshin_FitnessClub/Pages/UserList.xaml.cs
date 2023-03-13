@@ -1,7 +1,9 @@
 ﻿using Lapshin_FitnessClub.ClassHelper;
+using Lapshin_FitnessClub.DB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Management.Instrumentation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,24 +19,28 @@ using System.Windows.Shapes;
 namespace Lapshin_FitnessClub.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для AdminPanel.xaml
+    /// Логика взаимодействия для UserList.xaml
     /// </summary>
-    public partial class AdminPanel : Page
+    public partial class UserList : Page
     {
-        //Панель управления базой (в разработке)
-        public AdminPanel()
+        public UserList()
         {
             InitializeComponent();
+            GetUserList();
         }
 
-        private void BtnServiceListShow_Click(object sender, RoutedEventArgs e)
+        private void GetUserList()
         {
-            NavigationService.Navigate(PageMaster.serviceList);
+            List<User> userList = new List<User>();
+            
+            userList = ConnectionClass.context.User.ToList();
+
+            LvUser.ItemsSource = userList;
         }
 
-        private void BtnUserListShow_Click(object sender, RoutedEventArgs e)
+        private void BtnGoBack_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(PageMaster.userList);
+            NavigationService.GoBack();
         }
     }
 }

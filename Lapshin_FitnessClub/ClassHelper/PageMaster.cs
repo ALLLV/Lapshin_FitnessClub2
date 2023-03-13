@@ -15,5 +15,6 @@ namespace Lapshin_FitnessClub.ClassHelper
         public static Registration registration = new Registration();
         public static ServiceList serviceList = new ServiceList();
         public static AdminPanel adminPanel = new AdminPanel();
+        public static UserList userList = new UserList();
     }
 }

@@ -145,5 +145,14 @@
                 HorizontalAlignment="Right"
                 Margin="20 0"
                 Click="BtnAddService_Click"/>
+
+        <Button x:Name="BtnGoBack"
+                Content="Назад"
+                Grid.Row="4"
+                Width="250"
+                Height="40"
+                FontSize="22"
+                HorizontalAlignment="Left"
+                Margin="20 0" Click="BtnGoBack_Click"/>
     </Grid>
 </Page>

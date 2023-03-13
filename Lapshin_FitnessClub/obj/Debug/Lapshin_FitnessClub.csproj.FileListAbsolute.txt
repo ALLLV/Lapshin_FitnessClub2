@@ -33,3 +33,5 @@ C:\Users\IMac2\source\repos\Lapshin_FitnessClub2\Lapshin_FitnessClub\obj\Debug\L
 C:\Users\IMac2\source\repos\Lapshin_FitnessClub2\Lapshin_FitnessClub\obj\Debug\Lapshin_FitnessClub.csproj.CopyComplete
 C:\Users\IMac2\source\repos\Lapshin_FitnessClub2\Lapshin_FitnessClub\obj\Debug\Lapshin_FitnessClub.exe
 C:\Users\IMac2\source\repos\Lapshin_FitnessClub2\Lapshin_FitnessClub\obj\Debug\Lapshin_FitnessClub.pdb
+C:\Users\IMac2\source\repos\Lapshin_FitnessClub2\Lapshin_FitnessClub\obj\Debug\Pages\UserList.g.cs
+C:\Users\IMac2\source\repos\Lapshin_FitnessClub2\Lapshin_FitnessClub\obj\Debug\Pages\UserList.baml
