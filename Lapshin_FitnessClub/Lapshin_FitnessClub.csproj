@@ -69,6 +69,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\CartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Registration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -82,6 +86,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\AddEditServiceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddEditUserWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -146,6 +154,9 @@
     <Compile Include="Pages\AdminPanel.xaml.cs">
       <DependentUpon>AdminPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\CartPage.xaml.cs">
+      <DependentUpon>CartPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
@@ -157,6 +168,9 @@
     </Compile>
     <Compile Include="Windows\AddEditServiceWindow.xaml.cs">
       <DependentUpon>AddEditServiceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddEditUserWindow.xaml.cs">
+      <DependentUpon>AddEditUserWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -218,6 +232,8 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Res\cart.png" />
+    <Resource Include="Res\edit.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Res\default.jpg" />

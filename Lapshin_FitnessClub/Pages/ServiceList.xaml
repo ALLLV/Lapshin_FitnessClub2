@@ -40,6 +40,7 @@
                    VerticalAlignment="Center">
             <TextBlock Text="Поиск:"
                        FontSize="18"
+                       Height="18px"
                        Margin="16 0 0 0"/>
 
             <TextBox Height="30"
@@ -66,12 +67,28 @@
                                FontSize="16"/>
                 </ComboBoxItem>
             </ComboBox>
+
+            <Button x:Name="BtnCartIntent"
+                                    Background="{x:Null}"
+                                    FontSize="18"
+                                    BorderThickness="1"
+                                    Width="40"
+                                    Height="40"
+                                    Margin="100 0 0 0"
+                    Click="BtnCartIntent_Click">
+                <Image Source="/Res/cart.png"/>
+                <Button.ToolTip>
+                    Переход в корзину
+                </Button.ToolTip>
+            </Button>
+            
         </WrapPanel>
 
         <WrapPanel Grid.Row="2"
                    VerticalAlignment="Center">
             <TextBlock Text="Сортировка:"
                        FontSize="18"
+                       Height="18px"
                        Margin="16 0 0 0"/>
 
             <ComboBox x:Name="CmbSort"
@@ -79,6 +96,8 @@
                       Width="300"
                       HorizontalContentAlignment="Center"
                       VerticalContentAlignment="Center"/>
+
+           
         </WrapPanel>
 
         <ListView x:Name="LvService"
@@ -97,7 +116,7 @@
                     <Border BorderBrush="DarkSlateGray"
                             BorderThickness="1"
                             Width="200"
-                            Height="280"
+                            Height="300"
                             Margin="8">
                         <StackPanel>
                             <Image x:Name="ServiceImage"
@@ -123,13 +142,30 @@
                                        FontSize="18"
                                        Margin="5 0 0 0"/>
 
-                            <Button x:Name="BtnEditProduct"
-                                    Content="Изменить"
+                            <WrapPanel>
+                                <Button x:Name="BtnEditProduct"
+                                    Background="{x:Null}"
                                     FontSize="18"
-                                    Width="150"
-                                    Height="30"
+                                    BorderThickness="1"
+                                    Width="40"
+                                    Height="40"
                                     Margin="10"
-                                    Click="BtnEditProduct_Click"/>
+                                    Click="BtnEditProduct_Click">
+                                    <Image Source="/Res/edit.png"/>
+                                </Button>
+
+                                <Button x:Name="BtnCartProduct"
+                                    Background="{x:Null}"
+                                    FontSize="18"
+                                    BorderThickness="1"
+                                    Width="40"
+                                    Height="40"
+                                    Margin="10"
+                                    Click="BtnCartProduct_Click">
+                                    <Image Source="/Res/cart.png"/>
+                                </Button>
+                            </WrapPanel>
+
                         </StackPanel>
                     </Border>
                 </DataTemplate>

@@ -13,6 +13,8 @@ namespace Lapshin_FitnessClub.ClassHelper
 
         public User newUser;
 
+        public static List<Service> cartServices = new List<Service>();
+
         //static string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["Entities"].ConnectionString;
 
         //static SqlConnection connection = new SqlConnection(connectionString);

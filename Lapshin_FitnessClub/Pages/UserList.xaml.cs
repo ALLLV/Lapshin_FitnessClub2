@@ -1,5 +1,6 @@
 ﻿using Lapshin_FitnessClub.ClassHelper;
 using Lapshin_FitnessClub.DB;
+using Lapshin_FitnessClub.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,7 @@ namespace Lapshin_FitnessClub.Pages
 
         private void GetUserList()
         {
+            //получение списка пользователей
             List<User> userList = new List<User>();
             
             userList = ConnectionClass.context.User.ToList();
@@ -40,7 +42,33 @@ namespace Lapshin_FitnessClub.Pages
 
         private void BtnGoBack_Click(object sender, RoutedEventArgs e)
         {
+            //кнопка возврата на предыыдущую страницу
             NavigationService.GoBack();
+        }
+
+        private void BtnAddUser_Click(object sender, RoutedEventArgs e)
+        {
+            //кнопка добавления пользователя
+            AddEditUserWindow addEditUserWindow = new AddEditUserWindow();
+            addEditUserWindow.ShowDialog();
+
+            GetUserList();
+        }
+
+        private void BtnEditUser_Click(object sender, RoutedEventArgs e)
+        {
+            //кнопка изменения пользователя
+            //обработка исключения в случае если кнопка вернет null
+            Button button = sender as Button;
+            if (button == null) return;
+
+            //Получаем нужного пользователя
+            User user = button.DataContext as User;
+
+            AddEditUserWindow addEditUserWindow = new AddEditUserWindow(user);
+            addEditUserWindow.ShowDialog();
+
+            GetUserList();
         }
     }
 }

@@ -160,5 +160,30 @@ namespace Lapshin_FitnessClub.Pages
         {
             NavigationService.GoBack();
         }
+
+        private void BtnCartProduct_Click(object sender, RoutedEventArgs e)
+        {
+            //кнопка добавления услуги в корзину
+            //обработка исключения в случае если кнопка вернет null
+            var button = sender as Button;
+            if (button == null) return;
+
+            //получаем услугу
+            var service = button.DataContext as Service;
+
+            //добавление услуги в корзину (временный список)
+            ConnectionClass.cartServices.Add(service);
+            System.Windows.MessageBox.Show("Услуга успешно добавлена в корзину!");
+
+            GetServiceList();
+        }
+
+        private void BtnCartIntent_Click(object sender, RoutedEventArgs e)
+        {
+            //кнопка перехода в корзину
+            //обработка исключения в случае если кнопка вернет null
+            CartPage cartPage = new CartPage();
+            NavigationService.Navigate(cartPage);
+        }
     }
 }

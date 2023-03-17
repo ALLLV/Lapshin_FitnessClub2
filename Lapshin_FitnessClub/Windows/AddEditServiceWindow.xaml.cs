@@ -103,7 +103,6 @@ namespace Lapshin_FitnessClub.Windows
                 }
                 ConnectionClass.context.SaveChanges();
                 MessageBox.Show("Услуга успешно изменена");
-
             }
             else
             {
