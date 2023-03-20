@@ -38,6 +38,15 @@
     <Property Name="Code" Type="nchar" MaxLength="1" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="14" />
   </EntityType>
+  <EntityType Name="Purchase">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUser" Type="int" Nullable="false" />
+    <Property Name="IdWorker" Type="int" Nullable="false" />
+    <Property Name="PurchaseDate" Type="datetime" />
+  </EntityType>
   <EntityType Name="Role">
     <Key>
       <PropertyRef Name="Id" />
@@ -56,6 +65,14 @@
     <Property Name="IsActive" Type="bit" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="1000" />
     <Property Name="Photo" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="ServicePurchase">
+    <Key>
+      <PropertyRef Name="IdService" />
+      <PropertyRef Name="IdPurchase" />
+    </Key>
+    <Property Name="IdService" Type="int" Nullable="false" />
+    <Property Name="IdPurchase" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Subscription">
     <Key>
@@ -154,6 +171,54 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Purchase_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Purchase">
+        <PropertyRef Name="IdUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Purchase_User1">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Purchase">
+        <PropertyRef Name="IdWorker" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServicePurchase_Purchase">
+    <End Role="Purchase" Type="Self.Purchase" Multiplicity="1" />
+    <End Role="ServicePurchase" Type="Self.ServicePurchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Purchase">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ServicePurchase">
+        <PropertyRef Name="IdPurchase" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServicePurchase_Service">
+    <End Role="Service" Type="Self.Service" Multiplicity="1" />
+    <End Role="ServicePurchase" Type="Self.ServicePurchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ServicePurchase">
+        <PropertyRef Name="IdService" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Subscription_Service">
     <End Role="Service" Type="Self.Service" Multiplicity="1" />
     <End Role="Subscription" Type="Self.Subscription" Multiplicity="*" />
@@ -226,8 +291,10 @@
     <EntitySet Name="ClientSubscription" EntityType="Self.ClientSubscription" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EditHistory" EntityType="Self.EditHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Purchase" EntityType="Self.Purchase" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServicePurchase" EntityType="Self.ServicePurchase" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Subscription" EntityType="Self.Subscription" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -250,6 +317,22 @@
     <AssociationSet Name="FK_EditHistory_User" Association="Self.FK_EditHistory_User">
       <End Role="User" EntitySet="User" />
       <End Role="EditHistory" EntitySet="EditHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Purchase_User" Association="Self.FK_Purchase_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Purchase" EntitySet="Purchase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Purchase_User1" Association="Self.FK_Purchase_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Purchase" EntitySet="Purchase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServicePurchase_Purchase" Association="Self.FK_ServicePurchase_Purchase">
+      <End Role="Purchase" EntitySet="Purchase" />
+      <End Role="ServicePurchase" EntitySet="ServicePurchase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServicePurchase_Service" Association="Self.FK_ServicePurchase_Service">
+      <End Role="Service" EntitySet="Service" />
+      <End Role="ServicePurchase" EntitySet="ServicePurchase" />
     </AssociationSet>
     <AssociationSet Name="FK_Subscription_Service" Association="Self.FK_Subscription_Service">
       <End Role="Service" EntitySet="Service" />

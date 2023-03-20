@@ -72,6 +72,19 @@
       <End Role="Service" EntitySet="Service" />
       <End Role="Subscription" EntitySet="Subscription" />
     </AssociationSet>
+    <EntitySet Name="Purchase" EntityType="DBModel.Purchase" />
+    <AssociationSet Name="FK_Purchase_User" Association="DBModel.FK_Purchase_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Purchase" EntitySet="Purchase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Purchase_User1" Association="DBModel.FK_Purchase_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Purchase" EntitySet="Purchase" />
+    </AssociationSet>
+    <AssociationSet Name="ServicePurchase" Association="DBModel.ServicePurchase">
+      <End Role="Purchase" EntitySet="Purchase" />
+      <End Role="Service" EntitySet="Service" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -150,6 +163,7 @@
     <NavigationProperty Name="ClientService" Relationship="DBModel.FK_ClientService_Service" FromRole="Service" ToRole="ClientService" />
     <NavigationProperty Name="ClientSubscription" Relationship="DBModel.FK_ClientSubscription_Service" FromRole="Service" ToRole="ClientSubscription" />
     <NavigationProperty Name="Subscription" Relationship="DBModel.FK_Subscription_Service" FromRole="Service" ToRole="Subscription" />
+    <NavigationProperty Name="Purchase" Relationship="DBModel.ServicePurchase" FromRole="Service" ToRole="Purchase" />
   </EntityType>
   <EntityType Name="Subscription">
     <Key>
@@ -193,6 +207,8 @@
     <NavigationProperty Name="EditHistory" Relationship="DBModel.FK_EditHistory_User" FromRole="User" ToRole="EditHistory" />
     <NavigationProperty Name="Gender" Relationship="DBModel.FK_User_Gender" FromRole="User" ToRole="Gender" />
     <NavigationProperty Name="Role" Relationship="DBModel.FK_User_Role" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Purchase" Relationship="DBModel.FK_Purchase_User" FromRole="User" ToRole="Purchase" />
+    <NavigationProperty Name="Purchase1" Relationship="DBModel.FK_Purchase_User1" FromRole="User" ToRole="Purchase" />
   </EntityType>
   <Association Name="FK_ClientService_Service">
     <End Type="DBModel.Service" Role="Service" Multiplicity="1" />
@@ -289,5 +305,45 @@
         <PropertyRef Name="IdService" />
       </Dependent>
     </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Purchase">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUser" Type="Int32" Nullable="false" />
+    <Property Name="IdWorker" Type="Int32" Nullable="false" />
+    <Property Name="PurchaseDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="User" Relationship="DBModel.FK_Purchase_User" FromRole="Purchase" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="DBModel.FK_Purchase_User1" FromRole="Purchase" ToRole="User" />
+    <NavigationProperty Name="Service" Relationship="DBModel.ServicePurchase" FromRole="Purchase" ToRole="Service" />
+  </EntityType>
+  <Association Name="FK_Purchase_User">
+    <End Type="DBModel.User" Role="User" Multiplicity="1" />
+    <End Type="DBModel.Purchase" Role="Purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Purchase">
+        <PropertyRef Name="IdUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Purchase_User1">
+    <End Type="DBModel.User" Role="User" Multiplicity="1" />
+    <End Type="DBModel.Purchase" Role="Purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Purchase">
+        <PropertyRef Name="IdWorker" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ServicePurchase">
+    <End Type="DBModel.Purchase" Role="Purchase" Multiplicity="*" />
+    <End Type="DBModel.Service" Role="Service" Multiplicity="*" />
   </Association>
 </Schema>

@@ -130,6 +130,9 @@
     <Compile Include="DB\Gender.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DB\Purchase.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB\Role.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>

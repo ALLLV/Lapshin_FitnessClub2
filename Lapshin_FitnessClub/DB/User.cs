@@ -20,6 +20,8 @@ namespace Lapshin_FitnessClub.DB
             this.ClientService = new HashSet<ClientService>();
             this.ClientSubscription = new HashSet<ClientSubscription>();
             this.EditHistory = new HashSet<EditHistory>();
+            this.Purchase = new HashSet<Purchase>();
+            this.Purchase1 = new HashSet<Purchase>();
         }
     
         public int Id { get; set; }
@@ -42,5 +44,9 @@ namespace Lapshin_FitnessClub.DB
         public virtual ICollection<EditHistory> EditHistory { get; set; }
         public virtual Gender Gender { get; set; }
         public virtual Role Role { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Purchase> Purchase { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Purchase> Purchase1 { get; set; }
     }
 }

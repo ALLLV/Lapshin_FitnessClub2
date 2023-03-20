@@ -126,5 +126,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Purchase">
+      <EntityTypeMapping TypeName="DBModel.Purchase">
+        <MappingFragment StoreEntitySet="Purchase">
+          <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+          <ScalarProperty Name="IdWorker" ColumnName="IdWorker" />
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ServicePurchase" TypeName="DBModel.ServicePurchase" StoreEntitySet="ServicePurchase">
+      <EndProperty Name="Service">
+        <ScalarProperty Name="Id" ColumnName="IdService" />
+      </EndProperty>
+      <EndProperty Name="Purchase">
+        <ScalarProperty Name="Id" ColumnName="IdPurchase" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

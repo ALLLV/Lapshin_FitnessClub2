@@ -22,6 +22,10 @@
         <AssociationConnector Association="DBModel.FK_User_Gender" />
         <AssociationConnector Association="DBModel.FK_User_Role" />
         <AssociationConnector Association="DBModel.FK_Subscription_Service" />
+        <EntityTypeShape EntityType="DBModel.Purchase" Width="1.5" PointX="5.5" PointY="0.625" />
+        <AssociationConnector Association="DBModel.FK_Purchase_User" />
+        <AssociationConnector Association="DBModel.FK_Purchase_User1" />
+        <AssociationConnector Association="DBModel.ServicePurchase" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

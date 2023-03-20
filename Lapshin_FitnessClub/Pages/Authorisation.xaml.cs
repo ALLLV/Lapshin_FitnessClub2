@@ -63,12 +63,14 @@ namespace Lapshin_FitnessClub.Pages
             if (authUser != null && authUser.IdRole == 1)
             {
                 NavigationService.Navigate(PageMaster.adminPanel);
+                ConnectionClass.currentUser = authUser;
             }
 
-            //в разработке
+            //Проверка на стандартную роль и переход к услугам
             else if (authUser != null && authUser.IdRole == 2)
             {
-                MessageBox.Show("Функция для пользователей в разработке!");
+                NavigationService.Navigate(PageMaster.serviceList);
+                ConnectionClass.currentUser = authUser;
             }
 
             //если пользователь не найден
