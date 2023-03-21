@@ -68,20 +68,6 @@
                 </ComboBoxItem>
             </ComboBox>
 
-            <Button x:Name="BtnCartIntent"
-                                    Background="{x:Null}"
-                                    FontSize="18"
-                                    BorderThickness="1"
-                                    Width="40"
-                                    Height="40"
-                                    Margin="100 0 0 0"
-                    Click="BtnCartIntent_Click">
-                <Image Source="/Res/cart.png"/>
-                <Button.ToolTip>
-                    Переход в корзину
-                </Button.ToolTip>
-            </Button>
-            
         </WrapPanel>
 
         <WrapPanel Grid.Row="2"
@@ -142,7 +128,7 @@
                                        FontSize="18"
                                        Margin="5 0 0 0"/>
 
-                            <WrapPanel>
+                            <StackPanel>
                                 <Button x:Name="BtnEditProduct"
                                     Background="{x:Null}"
                                     FontSize="18"
@@ -150,21 +136,11 @@
                                     Width="40"
                                     Height="40"
                                     Margin="10"
-                                    Click="BtnEditProduct_Click">
+                                    Click="BtnEditProduct_Click"
+                                        HorizontalAlignment="Center">
                                     <Image Source="/Res/edit.png"/>
                                 </Button>
-
-                                <Button x:Name="BtnCartProduct"
-                                    Background="{x:Null}"
-                                    FontSize="18"
-                                    BorderThickness="1"
-                                    Width="40"
-                                    Height="40"
-                                    Margin="10"
-                                    Click="BtnCartProduct_Click">
-                                    <Image Source="/Res/cart.png"/>
-                                </Button>
-                            </WrapPanel>
+                            </StackPanel>
 
                         </StackPanel>
                     </Border>

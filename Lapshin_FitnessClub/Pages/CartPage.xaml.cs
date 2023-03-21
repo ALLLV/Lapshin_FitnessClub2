@@ -40,7 +40,8 @@ namespace Lapshin_FitnessClub.Pages
         void GetServiceList() //не обновляется почему-то
         {
             //получение услуги
-            ObservableCollection<Service> services = new ObservableCollection<Service>(ConnectionClass.cartServices);
+            //observable collection - по сути list, только в нем отслеживаются изменения
+            ObservableCollection<Service> services = new ObservableCollection<Service>(ConnectionClass.cartServices); 
 
             LvService.ItemsSource = services;
         }

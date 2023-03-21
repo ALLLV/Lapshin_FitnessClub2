@@ -69,7 +69,7 @@ namespace Lapshin_FitnessClub.Pages
             //Проверка на стандартную роль и переход к услугам
             else if (authUser != null && authUser.IdRole == 2)
             {
-                NavigationService.Navigate(PageMaster.serviceList);
+                NavigationService.Navigate(PageMaster.serviceListClient);
                 ConnectionClass.currentUser = authUser;
             }
 

@@ -39,3 +39,5 @@ C:\Users\IMac2\source\repos\Lapshin_FitnessClub2\Lapshin_FitnessClub\obj\Debug\W
 C:\Users\IMac2\source\repos\Lapshin_FitnessClub2\Lapshin_FitnessClub\obj\Debug\Windows\AddEditUserWindow.baml
 C:\Users\IMac2\source\repos\Lapshin_FitnessClub2\Lapshin_FitnessClub\obj\Debug\Pages\CartPage.g.cs
 C:\Users\IMac2\source\repos\Lapshin_FitnessClub2\Lapshin_FitnessClub\obj\Debug\Pages\CartPage.baml
+C:\Users\IMac2\source\repos\Lapshin_FitnessClub2\Lapshin_FitnessClub\obj\Debug\Pages\ServiceListClient.g.cs
+C:\Users\IMac2\source\repos\Lapshin_FitnessClub2\Lapshin_FitnessClub\obj\Debug\Pages\ServiceListClient.baml
