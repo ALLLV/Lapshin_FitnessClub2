@@ -58,12 +58,23 @@ namespace Lapshin_FitnessClub.Pages
                var result = System.Windows.Forms.MessageBox.Show("Вы собираетесь совершить покупку. Продолжить?", "Покупка", System.Windows.Forms.MessageBoxButtons.YesNo);
                if(result == System.Windows.Forms.DialogResult.Yes)
                {
-                    Purchase purchase = new Purchase();
-                    purchase.IdUser = ConnectionClass.currentUser.Id;
-                    purchase.IdWorker = 1;
-                    purchase.PurchaseDate = DateTime.Now;
-                    System.Windows.Forms.MessageBox.Show("Покупка успешно совершена!");
-                }
+                    try
+                    {
+                        Purchase purchase = new Purchase();
+                        purchase.IdUser = ConnectionClass.currentUser.Id;
+                        purchase.IdWorker = 3;
+                        purchase.PurchaseDate = DateTime.Now;  
+                        foreach(Service service in ConnectionClass.cartServices)
+                        {
+                            purchase.Service.Add(service);
+                        }
+                        ConnectionClass.context.Purchase.Add(purchase);
+
+                        ConnectionClass.context.SaveChanges();
+                        System.Windows.Forms.MessageBox.Show("Покупка успешно совершена!");
+                    }
+                    catch (Exception ex) { System.Windows.Forms.MessageBox.Show(ex.Message.ToString()); } 
+               }
                else
                {
                    return;
