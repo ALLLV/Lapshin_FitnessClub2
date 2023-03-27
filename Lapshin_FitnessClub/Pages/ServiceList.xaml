@@ -105,7 +105,7 @@
                             Height="300"
                             Margin="8">
                         <StackPanel>
-                            <Image x:Name="ServiceImage"
+                            <!--<Image x:Name="ServiceImage"
                                    Height="150"
                                    Width="190">
                                 <Image.Source>
@@ -116,7 +116,7 @@
                                     </Binding>
                                 </Image.Source>
 
-                            </Image>
+                            </Image>-->
 
                             <TextBlock Text="{Binding Name}"
                                        FontSize="18"
@@ -128,7 +128,8 @@
                                        FontSize="18"
                                        Margin="5 0 0 0"/>
 
-                            <StackPanel>
+                            <WrapPanel Orientation="Horizontal"
+                                       HorizontalAlignment="Center">
                                 <Button x:Name="BtnEditProduct"
                                     Background="{x:Null}"
                                     FontSize="18"
@@ -136,11 +137,20 @@
                                     Width="40"
                                     Height="40"
                                     Margin="10"
-                                    Click="BtnEditProduct_Click"
-                                        HorizontalAlignment="Center">
+                                    Click="BtnEditProduct_Click">
                                     <Image Source="/Res/edit.png"/>
                                 </Button>
-                            </StackPanel>
+                                <Button x:Name="BtnDeleteProduct"
+                                    Background="{x:Null}"
+                                    FontSize="18"
+                                    BorderThickness="1"
+                                    Width="40"
+                                    Height="40"
+                                    Margin="10"
+                                    Click="BtnDeleteProduct_Click">
+                                    <Image Source="/Res/bin.png"/>
+                                </Button>
+                            </WrapPanel>
 
                         </StackPanel>
                     </Border>

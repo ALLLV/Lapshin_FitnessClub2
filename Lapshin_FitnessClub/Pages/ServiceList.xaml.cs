@@ -4,6 +4,7 @@ using Lapshin_FitnessClub.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Authentication.ExtendedProtection.Configuration;
 using System.Text;
 using System.Threading.Tasks;
@@ -159,6 +160,26 @@ namespace Lapshin_FitnessClub.Pages
         private void BtnGoBack_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void BtnDeleteProduct_Click(object sender, RoutedEventArgs e)
+        {
+            //кнопка удаления услуги
+            //обработка исключения в случае если кнопка вернет null
+            var button = sender as Button;
+            if (button == null) return;
+            
+            //получение нужной услуги
+            var service = button.DataContext as Service;
+
+            //подтверждение удаления
+            var result = System.Windows.Forms.MessageBox.Show($"Вы уверены что хотите удалить услугу {service.Name}?", "Удаление услуги", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                ConnectionClass.context.Service.Remove(service);
+                try {ConnectionClass.context.SaveChanges(); }
+                catch (Exception ex) { System.Windows.Forms.MessageBox.Show(ex.Message.ToString()); }
+            }
         }
     }
 }

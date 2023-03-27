@@ -11,11 +11,11 @@ namespace Lapshin_FitnessClub.ClassHelper
     public static class PageMaster
     {
         //Pages
-        public static Authorisation authorisation = new Authorisation();
-        public static Registration registration = new Registration();
-        public static ServiceList serviceList = new ServiceList();
-        public static ServiceListClient serviceListClient = new ServiceListClient();
-        public static AdminPanel adminPanel = new AdminPanel();
-        public static UserList userList = new UserList();
+        public static Authorisation authorisation;
+        public static Registration registration;
+        public static ServiceList serviceList;
+        public static ServiceListClient serviceListClient;
+        public static AdminPanel adminPanel;
+        public static UserList userList;
     }
 }

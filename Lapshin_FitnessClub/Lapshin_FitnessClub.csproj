@@ -242,6 +242,7 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Res\bin.png" />
     <Resource Include="Res\cart.png" />
     <Resource Include="Res\edit.png" />
   </ItemGroup>

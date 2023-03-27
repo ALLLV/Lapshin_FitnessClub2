@@ -3,6 +3,7 @@ using Lapshin_FitnessClub.DB;
 using Lapshin_FitnessClub.Windows;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Management.Instrumentation;
 using System.Text;
@@ -32,11 +33,16 @@ namespace Lapshin_FitnessClub.Pages
 
         private void GetUserList()
         {
-            //получение списка пользователей
-            List<User> userList = new List<User>();
-            
-            userList = ConnectionClass.context.User.ToList();
+            ObservableCollection<User> userList;
 
+            //Разграничение прав доступа к данным, если пользователь не является менеджером
+            //получение списка пользователей
+            if (ConnectionClass.currentUser != null && ConnectionClass.currentUser.IdRole != 1)
+                userList = new ObservableCollection<User>(ConnectionClass.context.User.Where(u => u.IdRole != 1));
+
+            else 
+                userList = new ObservableCollection<User>(ConnectionClass.context.User);
+                
             LvUser.ItemsSource = userList;
         }
 

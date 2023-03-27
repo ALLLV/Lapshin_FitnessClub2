@@ -52,10 +52,16 @@
                     <Border BorderBrush="DarkSlateGray"
                             BorderThickness="1"
                             Width="725"
-                            Height="300"
+                            Height="370"
                             Margin="10">
                         <StackPanel>
 
+                            <TextBlock Text="{Binding Login}"
+                                       FontSize="18"
+                                       Margin="5 20 0 0"/>
+                            <TextBlock Text="{Binding Password}"
+                                       FontSize="18"
+                                       Margin="5 20 0 0"/>
                             <TextBlock Text="{Binding FirstName}"
                                        FontSize="18"
                                        Margin="5 20 0 0"/>

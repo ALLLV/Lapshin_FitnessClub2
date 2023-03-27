@@ -59,25 +59,52 @@ namespace Lapshin_FitnessClub.Pages
                 .Where(i => i.Login == TbxLogin.Text && i.Password == TbxPassword.Password)
                 .FirstOrDefault();
 
-            //проверка на права администратора и переход на панель администратора
-            if (authUser != null && authUser.IdRole == 1)
+            //проверка на права администратора и переход в зависимости от роли
+            if (authUser != null)
             {
-                NavigationService.Navigate(PageMaster.adminPanel);
-                ConnectionClass.currentUser = authUser;
-            }
+                switch (authUser.IdRole)
+                {
+                    //Администратор
+                    case 3:
+                        NavigationService.Navigate(PageMaster.adminPanel);
+                        break;
 
-            //Проверка на стандартную роль и переход к услугам
-            else if (authUser != null && authUser.IdRole == 2)
-            {
-                NavigationService.Navigate(PageMaster.serviceListClient);
-                ConnectionClass.currentUser = authUser;
-            }
+                    //Менеджер
+                    case 1:
 
+                        break;
+
+                    //Тренер
+                    case 4:
+
+                        break;
+                    
+                    //Клиент
+                    case 2:
+                        NavigationService.Navigate(PageMaster.serviceListClient);
+                        break;
+                }
+                //Получение зарегистрированного пользователя в переменную
+                ConnectionClass.currentUser = authUser;
+
+                PageInit();
+            }
             //если пользователь не найден
             else
             {
                 MessageBox.Show("Пользователь не найден!");
             }
+        }
+
+        private void PageInit()
+        {
+            PageMaster.userList = new UserList();
+            PageMaster.authorisation = new Authorisation();
+            PageMaster.registration = new Registration();
+            PageMaster.serviceList = new ServiceList();
+            PageMaster.serviceListClient = new ServiceListClient();
+            PageMaster.adminPanel = new AdminPanel();
+            PageMaster.userList = new UserList();
         }
     }
 }
