@@ -13,9 +13,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
         
-        <Canvas Grid.RowSpan="2">
+        <Canvas Grid.RowSpan="3">
             <Canvas.Background>
                 <LinearGradientBrush>
                     <GradientStop Color="#daf2c307" Offset="0.1"/>
@@ -40,5 +41,15 @@
                     Height="200" Width="300"
                     x:Name="BtnUserListShow" Click="BtnUserListShow_Click"/>
         </WrapPanel>
+
+        <Button x:Name="BtnBack"
+                Grid.Row="3"
+                HorizontalAlignment="Left"
+                Height="40"
+                Width="200"
+                Content="Назад"
+                Click="BtnBack_Click">
+            
+        </Button>
     </Grid>
 </Page>

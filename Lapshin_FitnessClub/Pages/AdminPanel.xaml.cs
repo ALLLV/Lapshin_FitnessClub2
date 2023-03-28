@@ -29,12 +29,19 @@ namespace Lapshin_FitnessClub.Pages
 
         private void BtnServiceListShow_Click(object sender, RoutedEventArgs e)
         {
+            //Переход на страницу списка услуг
             NavigationService.Navigate(PageMaster.serviceList);
         }
 
         private void BtnUserListShow_Click(object sender, RoutedEventArgs e)
         {
+            //Переход на страницу списка пользователей
             NavigationService.Navigate(PageMaster.userList);
+        }
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        {
+            //Возврат на страницу регистрации
+            NavigationService.GoBack();
         }
     }
 }

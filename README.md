@@ -2,7 +2,7 @@
 
 <h1>DATABASE DIAGRAMM</h1>
 
-![image](https://user-images.githubusercontent.com/109417433/221529049-a18beac5-c27e-4d61-a3c1-563591ebf3f5.png)
+![image](https://user-images.githubusercontent.com/109417433/228181216-d594c3e5-0abe-45d3-bf7d-39f5647b9543.png)
 
 <h3>Авторизация</h3>
 

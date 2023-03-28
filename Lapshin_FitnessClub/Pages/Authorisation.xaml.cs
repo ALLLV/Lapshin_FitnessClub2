@@ -62,6 +62,9 @@ namespace Lapshin_FitnessClub.Pages
             //проверка на права администратора и переход в зависимости от роли
             if (authUser != null)
             {
+                ConnectionClass.currentUser = authUser; //Получение зарегистрированного пользователя в переменную
+
+                PageInit(); //инициализация страниц
                 switch (authUser.IdRole)
                 {
                     //Администратор
@@ -71,7 +74,7 @@ namespace Lapshin_FitnessClub.Pages
 
                     //Менеджер
                     case 1:
-
+                        NavigationService.Navigate(PageMaster.adminPanel);
                         break;
 
                     //Тренер
@@ -79,15 +82,11 @@ namespace Lapshin_FitnessClub.Pages
 
                         break;
                     
-                    //Клиент
+                    //Клиент*
                     case 2:
-                        NavigationService.Navigate(PageMaster.serviceListClient);
+                        //NavigationService.Navigate(PageMaster.serviceListClient);
                         break;
                 }
-                //Получение зарегистрированного пользователя в переменную
-                ConnectionClass.currentUser = authUser;
-
-                PageInit();
             }
             //если пользователь не найден
             else
@@ -98,8 +97,8 @@ namespace Lapshin_FitnessClub.Pages
 
         private void PageInit()
         {
+            //Инициализация страниц
             PageMaster.userList = new UserList();
-            PageMaster.authorisation = new Authorisation();
             PageMaster.registration = new Registration();
             PageMaster.serviceList = new ServiceList();
             PageMaster.serviceListClient = new ServiceListClient();

@@ -18,6 +18,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using MessageBox = System.Windows.Forms.MessageBox;
+
 namespace Lapshin_FitnessClub.Pages
 {
     /// <summary>
@@ -35,20 +37,19 @@ namespace Lapshin_FitnessClub.Pages
         {
             ObservableCollection<User> userList;
 
-            //Разграничение прав доступа к данным, если пользователь не является менеджером
-            //получение списка пользователей
+            //Разграничение прав доступа к данным, если пользователь не является менеджером и получение списка пользователей
             if (ConnectionClass.currentUser != null && ConnectionClass.currentUser.IdRole != 1)
-                userList = new ObservableCollection<User>(ConnectionClass.context.User.Where(u => u.IdRole != 1));
-
+                userList = new ObservableCollection<User>(ConnectionClass.context.User.Where(u => u.IdRole != 1 
+                                                                                             && u.Login != ConnectionClass.currentUser.Login));
             else 
-                userList = new ObservableCollection<User>(ConnectionClass.context.User);
+                userList = new ObservableCollection<User>(ConnectionClass.context.User.Where(u => u.Login != ConnectionClass.currentUser.Login));
                 
             LvUser.ItemsSource = userList;
         }
 
         private void BtnGoBack_Click(object sender, RoutedEventArgs e)
         {
-            //кнопка возврата на предыыдущую страницу
+            //кнопка возврата на предыдущую страницу
             NavigationService.GoBack();
         }
 
@@ -74,6 +75,32 @@ namespace Lapshin_FitnessClub.Pages
             AddEditUserWindow addEditUserWindow = new AddEditUserWindow(user);
             addEditUserWindow.ShowDialog();
 
+            GetUserList();
+        }
+
+        private void BtnDeleteUser_Click(object sender, RoutedEventArgs e)
+        {
+            //кнопка удаления пользователя
+            //обработка исключения в случае если кнопка вернет null
+            if (sender as Button == null) return;
+            
+            //Получаем нужного пользователя
+            User user = (sender as Button).DataContext as User;
+            var result = MessageBox.Show("Вы собираетесь удалить пользователя! Подтвердите удаление.",
+                "Удаление пользователя", 
+                System.Windows.Forms.MessageBoxButtons.YesNo);
+            if (result == System.Windows.Forms.DialogResult.Yes)
+            {
+                ConnectionClass.context.User.Remove(user);
+                try
+                {
+                    ConnectionClass.context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
             GetUserList();
         }
     }
