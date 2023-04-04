@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lapshin_FitnessClub.Windows"
         mc:Ignorable="d"
-        Title="AddEditUserWindow" Height="1000" Width="800">
+        Title="AddEditUserWindow" Height="1050" Width="800">
     <Grid>
         <Canvas>
             <Canvas.Background>
@@ -132,6 +132,18 @@
                 <ComboBoxItem Content="М"/>
                 <ComboBoxItem Content="Ж"/>
             </ComboBox>
+
+            <TextBlock x:Name="TbRole"
+                       Text="Роль пользователя"
+                       FontSize="18"
+                       HorizontalAlignment="Center"
+                       Margin="0 20 0 0"/>
+            
+            <ComboBox Margin="0 5 0 0" x:Name="CbxRole">
+                <ComboBoxItem Content="М"/>
+                <ComboBoxItem Content="Ж"/>
+            </ComboBox>
+
 
             <Button x:Name="BtnAddEditUser"
                     Content="Добавить пользователя"

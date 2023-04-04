@@ -23,6 +23,7 @@ namespace Lapshin_FitnessClub.Windows
     {
         private User editUser;
         private bool isEdit = false;
+
         public AddEditUserWindow()
         {
             InitializeComponent();
