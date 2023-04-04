@@ -65,11 +65,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Windows\ManagerMonitorInfo.xaml.cs">
+      <DependentUpon>ManagerMonitorInfo.xaml</DependentUpon>
+    </Compile>
     <Page Include="Pages\AdminPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\CartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ManagerMonitor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -164,6 +171,9 @@
     <Compile Include="Pages\CartPage.xaml.cs">
       <DependentUpon>CartPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ManagerMonitor.xaml.cs">
+      <DependentUpon>ManagerMonitor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
@@ -187,6 +197,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\Authorisation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ManagerMonitorInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

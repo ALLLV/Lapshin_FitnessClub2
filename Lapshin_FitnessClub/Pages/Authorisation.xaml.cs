@@ -104,6 +104,7 @@ namespace Lapshin_FitnessClub.Pages
             PageMaster.serviceListClient = new ServiceListClient();
             PageMaster.adminPanel = new AdminPanel();
             PageMaster.userList = new UserList();
+            PageMaster.managerMonitor = new ManagerMonitor();
         }
     }
 }

@@ -25,6 +25,7 @@ namespace Lapshin_FitnessClub.Pages
         public AdminPanel()
         {
             InitializeComponent();
+            if (ConnectionClass.currentUser.IdRole != 1) BtnManagerMonitor.Visibility = Visibility.Hidden;
         }
 
         private void BtnServiceListShow_Click(object sender, RoutedEventArgs e)
@@ -42,6 +43,11 @@ namespace Lapshin_FitnessClub.Pages
         {
             //Возврат на страницу регистрации
             NavigationService.GoBack();
+        }
+
+        private void BtnManagerMonitor_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(PageMaster.managerMonitor);
         }
     }
 }

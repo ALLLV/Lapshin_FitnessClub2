@@ -139,9 +139,9 @@
                        HorizontalAlignment="Center"
                        Margin="0 20 0 0"/>
             
-            <ComboBox Margin="0 5 0 0" x:Name="CbxRole">
-                <ComboBoxItem Content="М"/>
-                <ComboBoxItem Content="Ж"/>
+            <ComboBox Margin="0 5 0 0" x:Name="CbxRole"
+                      ItemsSource="{Binding}">
+                
             </ComboBox>
 
 

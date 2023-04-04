@@ -11,7 +11,7 @@
 
 <h3>Панель управления</h3>
 
-![image](https://user-images.githubusercontent.com/109417433/224669581-31407ef7-8004-4e0a-9ead-08ee9ad880ae.png)
+![image](https://user-images.githubusercontent.com/109417433/229789974-8beafbc1-64ba-4a44-b289-64ac75921cc7.png)
 
 
 <h3>Список пользователей</h3>
@@ -42,3 +42,14 @@
 <h3>Корзина клиента</h3>
 
 ![image](https://user-images.githubusercontent.com/109417433/226545241-073544a3-6c58-432c-a5ff-e5f5755ad0e3.png)
+
+
+<h3>Монитор Менеджера</h3>
+
+![image](https://user-images.githubusercontent.com/109417433/229790181-bd3be8c5-9a2f-4206-bf66-bdad35f41132.png)
+
+
+<h3>Подробная информация о покупке</h3>
+
+![image](https://user-images.githubusercontent.com/109417433/229790300-5aa57e4e-7569-4528-9d88-589d1ce67f23.png)
+

@@ -2,6 +2,7 @@
 using Lapshin_FitnessClub.DB;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,16 +24,29 @@ namespace Lapshin_FitnessClub.Windows
     {
         private User editUser;
         private bool isEdit = false;
+        private List<String> roles = new List<String>();
 
         public AddEditUserWindow()
         {
             InitializeComponent();
+            SetDatacontext();
         }
 
+        void SetDatacontext()
+        {
+            foreach (Role role in ConnectionClass.context.Role)
+            {
+                roles.Add(role.Name);
+            }
+            if (ConnectionClass.currentUser.IdRole != 1)
+                DataContext = roles.Where(i => i != "Менеджер");
+            else DataContext = roles;
+        }
         public AddEditUserWindow(User user)
         {
             //конструктор ля редактирования
             InitializeComponent();
+            SetDatacontext();
 
             // Изменения заголовка и текста кнопки
             TbTitle.Text = "Редактирование пользователей";
@@ -89,7 +103,10 @@ namespace Lapshin_FitnessClub.Windows
                     //добавление
                     User user = new User();
                     user.Login = TbLogin.Text;
-                    user.IdRole = 2;
+
+                    Role rolenow = ConnectionClass.context.Role.Where(i => i.Name == CbxRole.Text) as Role;
+                    user.IdRole = rolenow.Id;
+                    
                     user.Password = TbPassword.Text;
                     user.FirstName = TbFirstName.Text;
                     user.LastName = TbLastName.Text;

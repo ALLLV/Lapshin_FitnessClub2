@@ -40,6 +40,9 @@
             <Button Content="Список пользователей"
                     Height="200" Width="300"
                     x:Name="BtnUserListShow" Click="BtnUserListShow_Click"/>
+            <Button Content="Список оказанных услуг"
+                    Height="200" Width="300"
+                    x:Name="BtnManagerMonitor" Click="BtnManagerMonitor_Click"/>
         </WrapPanel>
 
         <Button x:Name="BtnBack"
