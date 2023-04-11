@@ -16,6 +16,7 @@ namespace Lapshin_FitnessClub.ClassHelper
         public static ServiceList serviceList;
         public static ServiceListClient serviceListClient;
         public static AdminPanel adminPanel;
+        public static CoachPanel coachPanel;
         public static UserList userList;
         public static ManagerMonitor managerMonitor;
     }

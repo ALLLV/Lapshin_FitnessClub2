@@ -85,6 +85,24 @@
       <End Role="Purchase" EntitySet="Purchase" />
       <End Role="Service" EntitySet="Service" />
     </AssociationSet>
+    <EntitySet Name="Schedule" EntityType="DBModel.Schedule" />
+    <EntitySet Name="ScheduleService" EntityType="DBModel.ScheduleService" />
+    <AssociationSet Name="FK_Schedule_User" Association="DBModel.FK_Schedule_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Schedule" EntitySet="Schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScheduleService_Schedule" Association="DBModel.FK_ScheduleService_Schedule">
+      <End Role="Schedule" EntitySet="Schedule" />
+      <End Role="ScheduleService" EntitySet="ScheduleService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScheduleService_Service" Association="DBModel.FK_ScheduleService_Service">
+      <End Role="Service" EntitySet="Service" />
+      <End Role="ScheduleService" EntitySet="ScheduleService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScheduleService_User" Association="DBModel.FK_ScheduleService_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="ScheduleService" EntitySet="ScheduleService" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -164,6 +182,7 @@
     <NavigationProperty Name="ClientSubscription" Relationship="DBModel.FK_ClientSubscription_Service" FromRole="Service" ToRole="ClientSubscription" />
     <NavigationProperty Name="Subscription" Relationship="DBModel.FK_Subscription_Service" FromRole="Service" ToRole="Subscription" />
     <NavigationProperty Name="Purchase" Relationship="DBModel.ServicePurchase" FromRole="Service" ToRole="Purchase" />
+    <NavigationProperty Name="ScheduleService" Relationship="DBModel.FK_ScheduleService_Service" FromRole="Service" ToRole="ScheduleService" />
   </EntityType>
   <EntityType Name="Subscription">
     <Key>
@@ -209,6 +228,8 @@
     <NavigationProperty Name="Role" Relationship="DBModel.FK_User_Role" FromRole="User" ToRole="Role" />
     <NavigationProperty Name="Purchase" Relationship="DBModel.FK_Purchase_User" FromRole="User" ToRole="Purchase" />
     <NavigationProperty Name="Purchase1" Relationship="DBModel.FK_Purchase_User1" FromRole="User" ToRole="Purchase" />
+    <NavigationProperty Name="Schedule" Relationship="DBModel.FK_Schedule_User" FromRole="User" ToRole="Schedule" />
+    <NavigationProperty Name="ScheduleService" Relationship="DBModel.FK_ScheduleService_User" FromRole="User" ToRole="ScheduleService" />
   </EntityType>
   <Association Name="FK_ClientService_Service">
     <End Type="DBModel.Service" Role="Service" Multiplicity="1" />
@@ -345,5 +366,75 @@
   <Association Name="ServicePurchase">
     <End Type="DBModel.Purchase" Role="Purchase" Multiplicity="*" />
     <End Type="DBModel.Service" Role="Service" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Schedule">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUser" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="DBModel.FK_Schedule_User" FromRole="Schedule" ToRole="User" />
+    <NavigationProperty Name="ScheduleService" Relationship="DBModel.FK_ScheduleService_Schedule" FromRole="Schedule" ToRole="ScheduleService" />
+  </EntityType>
+  <EntityType Name="ScheduleService">
+    <Key>
+      <PropertyRef Name="IdSchedule" />
+      <PropertyRef Name="IdService" />
+    </Key>
+    <Property Name="IdSchedule" Type="Int32" Nullable="false" />
+    <Property Name="IdService" Type="Int32" Nullable="false" />
+    <Property Name="BeginningDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Schedule" Relationship="DBModel.FK_ScheduleService_Schedule" FromRole="ScheduleService" ToRole="Schedule" />
+    <NavigationProperty Name="Service" Relationship="DBModel.FK_ScheduleService_Service" FromRole="ScheduleService" ToRole="Service" />
+    <Property Name="IdUser" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="DBModel.FK_ScheduleService_User" FromRole="ScheduleService" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Schedule_User">
+    <End Type="DBModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="DBModel.Schedule" Role="Schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Schedule">
+        <PropertyRef Name="IdUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScheduleService_Schedule">
+    <End Type="DBModel.Schedule" Role="Schedule" Multiplicity="1" />
+    <End Type="DBModel.ScheduleService" Role="ScheduleService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schedule">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScheduleService">
+        <PropertyRef Name="IdSchedule" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScheduleService_Service">
+    <End Type="DBModel.Service" Role="Service" Multiplicity="1" />
+    <End Type="DBModel.ScheduleService" Role="ScheduleService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScheduleService">
+        <PropertyRef Name="IdService" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScheduleService_User">
+    <End Type="DBModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="DBModel.ScheduleService" Role="ScheduleService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScheduleService">
+        <PropertyRef Name="IdUser" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

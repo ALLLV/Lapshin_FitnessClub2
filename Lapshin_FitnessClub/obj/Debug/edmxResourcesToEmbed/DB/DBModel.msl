@@ -144,5 +144,23 @@
         <ScalarProperty Name="Id" ColumnName="IdPurchase" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="Schedule">
+      <EntityTypeMapping TypeName="DBModel.Schedule">
+        <MappingFragment StoreEntitySet="Schedule">
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScheduleService">
+      <EntityTypeMapping TypeName="DBModel.ScheduleService">
+        <MappingFragment StoreEntitySet="ScheduleService">
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="BeginningDate" ColumnName="BeginningDate" />
+          <ScalarProperty Name="IdService" ColumnName="IdService" />
+          <ScalarProperty Name="IdSchedule" ColumnName="IdSchedule" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

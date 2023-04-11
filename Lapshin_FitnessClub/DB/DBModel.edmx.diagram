@@ -26,6 +26,12 @@
         <AssociationConnector Association="DBModel.FK_Purchase_User" />
         <AssociationConnector Association="DBModel.FK_Purchase_User1" />
         <AssociationConnector Association="DBModel.ServicePurchase" />
+        <EntityTypeShape EntityType="DBModel.Schedule" Width="1.5" PointX="5.25" PointY="18.625" />
+        <EntityTypeShape EntityType="DBModel.ScheduleService" Width="1.5" PointX="7.5" PointY="9.5" />
+        <AssociationConnector Association="DBModel.FK_Schedule_User" />
+        <AssociationConnector Association="DBModel.FK_ScheduleService_Schedule" />
+        <AssociationConnector Association="DBModel.FK_ScheduleService_Service" />
+        <AssociationConnector Association="DBModel.FK_ScheduleService_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -45,3 +45,5 @@ C:\Users\IMac2\source\repos\Lapshin_FitnessClub2\Lapshin_FitnessClub\obj\Debug\P
 C:\Users\IMac2\source\repos\Lapshin_FitnessClub2\Lapshin_FitnessClub\obj\Debug\Pages\ManagerMonitor.baml
 C:\Users\IMac2\source\repos\Lapshin_FitnessClub2\Lapshin_FitnessClub\obj\Debug\Windows\ManagerMonitorInfo.g.cs
 C:\Users\IMac2\source\repos\Lapshin_FitnessClub2\Lapshin_FitnessClub\obj\Debug\Windows\ManagerMonitorInfo.baml
+C:\Users\IMac2\source\repos\Lapshin_FitnessClub2\Lapshin_FitnessClub\obj\Debug\Pages\CoachPanel.g.cs
+C:\Users\IMac2\source\repos\Lapshin_FitnessClub2\Lapshin_FitnessClub\obj\Debug\Pages\CoachPanel.baml

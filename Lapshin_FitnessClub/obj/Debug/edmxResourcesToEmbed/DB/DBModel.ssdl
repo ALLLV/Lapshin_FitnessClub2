@@ -54,6 +54,23 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
   </EntityType>
+  <EntityType Name="Schedule">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUser" Type="int" />
+  </EntityType>
+  <EntityType Name="ScheduleService">
+    <Key>
+      <PropertyRef Name="IdSchedule" />
+      <PropertyRef Name="IdService" />
+    </Key>
+    <Property Name="IdSchedule" Type="int" Nullable="false" />
+    <Property Name="IdService" Type="int" Nullable="false" />
+    <Property Name="BeginningDate" Type="datetime" />
+    <Property Name="IdUser" Type="int" />
+  </EntityType>
   <EntityType Name="Service">
     <Key>
       <PropertyRef Name="Id" />
@@ -195,6 +212,54 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Schedule_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Schedule">
+        <PropertyRef Name="IdUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScheduleService_Schedule">
+    <End Role="Schedule" Type="Self.Schedule" Multiplicity="1" />
+    <End Role="ScheduleService" Type="Self.ScheduleService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schedule">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScheduleService">
+        <PropertyRef Name="IdSchedule" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScheduleService_Service">
+    <End Role="Service" Type="Self.Service" Multiplicity="1" />
+    <End Role="ScheduleService" Type="Self.ScheduleService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScheduleService">
+        <PropertyRef Name="IdService" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScheduleService_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="ScheduleService" Type="Self.ScheduleService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScheduleService">
+        <PropertyRef Name="IdUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ServicePurchase_Purchase">
     <End Role="Purchase" Type="Self.Purchase" Multiplicity="1" />
     <End Role="ServicePurchase" Type="Self.ServicePurchase" Multiplicity="*" />
@@ -293,6 +358,8 @@
     <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Purchase" EntityType="Self.Purchase" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ScheduleService" EntityType="Self.ScheduleService" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ServicePurchase" EntityType="Self.ServicePurchase" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Subscription" EntityType="Self.Subscription" Schema="dbo" store:Type="Tables" />
@@ -325,6 +392,22 @@
     <AssociationSet Name="FK_Purchase_User1" Association="Self.FK_Purchase_User1">
       <End Role="User" EntitySet="User" />
       <End Role="Purchase" EntitySet="Purchase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Schedule_User" Association="Self.FK_Schedule_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Schedule" EntitySet="Schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScheduleService_Schedule" Association="Self.FK_ScheduleService_Schedule">
+      <End Role="Schedule" EntitySet="Schedule" />
+      <End Role="ScheduleService" EntitySet="ScheduleService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScheduleService_Service" Association="Self.FK_ScheduleService_Service">
+      <End Role="Service" EntitySet="Service" />
+      <End Role="ScheduleService" EntitySet="ScheduleService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScheduleService_User" Association="Self.FK_ScheduleService_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="ScheduleService" EntitySet="ScheduleService" />
     </AssociationSet>
     <AssociationSet Name="FK_ServicePurchase_Purchase" Association="Self.FK_ServicePurchase_Purchase">
       <End Role="Purchase" EntitySet="Purchase" />

@@ -2,7 +2,7 @@
 
 <h1>DATABASE DIAGRAMM</h1>
 
-![image](https://user-images.githubusercontent.com/109417433/228181216-d594c3e5-0abe-45d3-bf7d-39f5647b9543.png)
+![image](https://user-images.githubusercontent.com/109417433/231173481-631e3e5d-2ac8-433b-be86-accd98810b93.png)
 
 <h3>Авторизация</h3>
 
@@ -53,3 +53,6 @@
 
 ![image](https://user-images.githubusercontent.com/109417433/229790300-5aa57e4e-7569-4528-9d88-589d1ce67f23.png)
 
+<h3>Кабинет тренера</h3>
+
+![image](https://user-images.githubusercontent.com/109417433/231173342-219f55c3-c64f-4e5f-8ba5-4a100484be26.png)

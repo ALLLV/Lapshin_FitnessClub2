@@ -26,6 +26,8 @@ namespace Lapshin_FitnessClub.Pages
         public Authorisation()
         {
             InitializeComponent();
+
+            PageMaster.registration = new Registration();
         }
 
         private void TbRegUri_MouseEnter(object sender, MouseEventArgs e)
@@ -79,7 +81,7 @@ namespace Lapshin_FitnessClub.Pages
 
                     //Тренер
                     case 4:
-
+                        NavigationService.Navigate(PageMaster.coachPanel);
                         break;
                     
                     //Клиент*
@@ -99,12 +101,12 @@ namespace Lapshin_FitnessClub.Pages
         {
             //Инициализация страниц
             PageMaster.userList = new UserList();
-            PageMaster.registration = new Registration();
             PageMaster.serviceList = new ServiceList();
             PageMaster.serviceListClient = new ServiceListClient();
             PageMaster.adminPanel = new AdminPanel();
             PageMaster.userList = new UserList();
             PageMaster.managerMonitor = new ManagerMonitor();
+            PageMaster.coachPanel = new CoachPanel();
         }
     }
 }

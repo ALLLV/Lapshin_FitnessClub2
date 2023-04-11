@@ -22,6 +22,8 @@ namespace Lapshin_FitnessClub.DB
             this.EditHistory = new HashSet<EditHistory>();
             this.Purchase = new HashSet<Purchase>();
             this.Purchase1 = new HashSet<Purchase>();
+            this.Schedule = new HashSet<Schedule>();
+            this.ScheduleService = new HashSet<ScheduleService>();
         }
     
         public int Id { get; set; }
@@ -48,5 +50,9 @@ namespace Lapshin_FitnessClub.DB
         public virtual ICollection<Purchase> Purchase { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Purchase> Purchase1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Schedule> Schedule { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ScheduleService> ScheduleService { get; set; }
     }
 }

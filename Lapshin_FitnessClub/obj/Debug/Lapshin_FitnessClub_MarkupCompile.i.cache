@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\IMac2\source\repos\Lapshin_FitnessClub2\Lapshin_FitnessClub\App.xaml
-122131004742
+131631080000
 22122925329
-34-1225053381
+37-1084626306
 19-214969633
-Pages\AdminPanel.xaml;Pages\CartPage.xaml;Pages\ManagerMonitor.xaml;Pages\Registration.xaml;Pages\ServiceList.xaml;Pages\ServiceListClient.xaml;Pages\UserList.xaml;Windows\AddEditServiceWindow.xaml;Windows\AddEditUserWindow.xaml;Windows\MainWindow.xaml;Pages\Authorisation.xaml;Windows\ManagerMonitorInfo.xaml;
+Pages\AdminPanel.xaml;Pages\CartPage.xaml;Pages\CoachPanel.xaml;Pages\ManagerMonitor.xaml;Pages\Registration.xaml;Pages\ServiceList.xaml;Pages\ServiceListClient.xaml;Pages\UserList.xaml;Windows\AddEditServiceWindow.xaml;Windows\AddEditUserWindow.xaml;Windows\MainWindow.xaml;Pages\Authorisation.xaml;Windows\ManagerMonitorInfo.xaml;
 
-True
+False
 
