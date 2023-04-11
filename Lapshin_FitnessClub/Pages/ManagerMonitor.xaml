@@ -11,11 +11,11 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <Canvas Grid.RowSpan="3"
-                Grid.ColumnSpan="3">
+        <Canvas Grid.RowSpan="3">
             <Canvas.Background>
                 <LinearGradientBrush>
                     <GradientStop Color="#daf2c307" Offset="0.1"/>
@@ -38,11 +38,50 @@
         <TextBlock Text="Монитор Менеджера"
                    FontSize="30"
                    HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
+                   VerticalAlignment="Center"
+                   Margin="150 0 0 0"/>
+
+        <WrapPanel
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Grid.Row="1"
+            Margin="20 0 0 0">
+            <TextBlock Text="Выберите период:" 
+                       Margin="0 0 20 0"/>
+            <ComboBox
+                x:Name="CbxPeriod"
+                Width="200" SelectionChanged="CbxPeriod_SelectionChanged">
+                <ComboBoxItem>
+                    <TextBlock Text="Сегодня" 
+                               FontSize="18"/>
+                </ComboBoxItem>
+
+                <ComboBoxItem>
+                    <TextBlock Text="Неделя" 
+                               FontSize="18"/>
+                </ComboBoxItem>
+
+                <ComboBoxItem>
+                    <TextBlock Text="Месяц"
+                               FontSize="18"/>
+                </ComboBoxItem>
+
+                <ComboBoxItem>
+                    <TextBlock Text="Год" 
+                               FontSize="18"/>
+                </ComboBoxItem>
+
+                <ComboBoxItem>
+                    <TextBlock Text="По умолчанию" 
+                               FontSize="18"/>
+                </ComboBoxItem>
+            </ComboBox>
+        </WrapPanel>
+        
 
         <ListView Background="Transparent"
                   x:Name="LvManagerMonitor" 
-                  Grid.Row="1"
+                  Grid.Row="2"
                   d:ItemsSource="{d:SampleData ItemCount=1}"
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemsPanel>
@@ -87,7 +126,7 @@
                                 <TextBlock
                                     HorizontalAlignment="Right"
                                     Margin="0 20 0 0"
-                                    Text="ID Время покупки:"/>
+                                    Text="Время покупки:"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="1" 
@@ -134,7 +173,7 @@
 
         <Button
             x:Name="BtnBack"
-            Grid.Row="1"
+            Grid.Row="2"
             HorizontalAlignment="Left"
             VerticalAlignment="Bottom"
             Margin="10"

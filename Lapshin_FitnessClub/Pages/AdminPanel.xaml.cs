@@ -24,8 +24,10 @@ namespace Lapshin_FitnessClub.Pages
         //Панель управления базой (в разработке)
         public AdminPanel()
         {
+            //Разграничния по ролям
             InitializeComponent();
             if (ConnectionClass.currentUser.IdRole != 1) BtnManagerMonitor.Visibility = Visibility.Hidden;
+            else if (ConnectionClass.currentUser.IdRole == 1) BtnServiceListShow.Visibility = Visibility.Collapsed;
         }
 
         private void BtnServiceListShow_Click(object sender, RoutedEventArgs e)

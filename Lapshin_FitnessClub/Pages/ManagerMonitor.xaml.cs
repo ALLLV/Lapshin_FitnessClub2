@@ -11,11 +11,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Button = System.Windows.Controls.Button;
 
 namespace Lapshin_FitnessClub.Pages
 {
@@ -24,6 +26,7 @@ namespace Lapshin_FitnessClub.Pages
     /// </summary>
     public partial class ManagerMonitor : Page
     {
+        DateTime now = DateTime.Now;
         public ManagerMonitor()
         {
             InitializeComponent();
@@ -33,9 +36,37 @@ namespace Lapshin_FitnessClub.Pages
 
         private void GetPurchaseList()
         {
-            ObservableCollection<Purchase> purchaseList;
+            List<Purchase> purchaseList;
 
-            purchaseList = new ObservableCollection<Purchase>(ConnectionClass.context.Purchase);
+            purchaseList = new List<Purchase>(ConnectionClass.context.Purchase);
+
+            switch (CbxPeriod.SelectedIndex)
+            {
+                case 0:
+                    purchaseList = purchaseList.Where(i => i.PurchaseDate <= now 
+                        && i.PurchaseDate >= new DateTime(now.Year, now.Month, now.Day, 0, 0, 0)).ToList(); 
+                    break;
+                case 1:
+                    DateTime monday = now;
+                    while (monday.DayOfWeek != DayOfWeek.Monday)
+                    {
+                        monday = new DateTime(monday.Year, monday.Month, monday.Day - 1);
+                    }
+
+                    purchaseList = purchaseList.Where(i => i.PurchaseDate <= now
+                        && i.PurchaseDate >= new DateTime(now.Year, now.Month, monday.Day, 0, 0, 0)).ToList();
+                    break;
+                case 2:
+                    purchaseList = purchaseList.Where(i => i.PurchaseDate <= now
+                        && i.PurchaseDate >= new DateTime(now.Year, now.Month, 1, 0, 0, 0)).ToList();
+                    break;
+                case 3:
+                    purchaseList = purchaseList.Where(i => i.PurchaseDate <= now
+                        && i.PurchaseDate >= new DateTime(now.Year, 1, 1, 0, 0, 0)).ToList();
+                    break;
+                case 4:
+                    break;
+            }
 
             LvManagerMonitor.ItemsSource = purchaseList;
         }
@@ -56,6 +87,11 @@ namespace Lapshin_FitnessClub.Pages
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void CbxPeriod_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GetPurchaseList();
         }
     }
 }
